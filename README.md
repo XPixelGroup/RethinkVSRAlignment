@@ -29,7 +29,7 @@ Download [pretrained models](https://drive.google.com/drive/folders/1SyCIPlCZp4S
 ```bash
 # download code
 git clone https://github.com/XPixelGroup/RethinkVSRAlignment
-cd PSRT
+cd RethinkVSRAlignment
 pip install -r requirements.txt
 python setup.py develop
 
@@ -46,7 +46,7 @@ Prepare the corresponding datasets follwing the quick test stage. For better I/O
 ```bash
 # download code
 git clone https://github.com/XPixelGroup/RethinkVSRAlignment
-cd PSRT
+cd RethinkVSRAlignment
 pip install -r requirements.txt
 python setup.py develop
 
