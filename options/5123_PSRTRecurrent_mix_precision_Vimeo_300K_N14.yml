@@ -55,9 +55,6 @@ network_g:
   num_frames: 3
   cpu_cache_length: 100
   is_low_res_input: True
-  fusion_bool: False
-  dyn_bool: False
-  pla_bool: False
   spynet_path: experiments/pretrained_models/flownet/spynet_sintel_final-3d2a1287.pth
 
 # path

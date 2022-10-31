@@ -6,7 +6,7 @@ import os.path as osp
 import torch
 import torch.nn.functional as F
 # from archs.basicvsrppv2_arch import BasicVSRPlusPlusV2
-from archs.recurrentswin2d_arch import BasicRecurrentSwin
+from archs.psrt_recurrent_arch import BasicRecurrentSwin
 from basicsr.data.data_util import read_img_seq
 from basicsr.metrics import psnr_ssim
 from basicsr.utils import get_root_logger, get_time_str, imwrite, tensor2img
@@ -21,10 +21,12 @@ def main():
     # set suitable value to make sure cuda not out of memory
     # interval = 30
     # model
-    model_path = 'experiments/4126_RecurrentSwin2d_mix_precision_REDS_600K_N16_recurrenttest/net_g_365000.pth'
+    model_path = 'experiments/PSRT_Reccurrent/PSRT_REDS.pth'
     # test data
-    test_name = f'100_365k_recurrentswin2d_16f'
+    test_name = f'100_psrtrecurrent_16f'
 
+    # lr_folder = 'datasets/REDS4/sharp_bicubic'
+    # gt_folder = 'datasets/REDS4/GT'
     lr_folder = 'datasets/REDS4/sharp_bicubic'
     gt_folder = 'datasets/REDS4/GT'
     save_folder = f'results/{test_name}'
@@ -32,7 +34,7 @@ def main():
 
     # logger
     log_file = osp.join(save_folder, f'psnr_ssim_test_{get_time_str()}.log')
-    logger = get_root_logger(logger_name='recurrentswin2d', log_level=logging.INFO, log_file=log_file)
+    logger = get_root_logger(logger_name='recurrent', log_level=logging.INFO, log_file=log_file)
     logger.info(f'Data: {test_name} - {lr_folder}')
     logger.info(f'Model path: {model_path}')
 
@@ -45,11 +47,8 @@ def main():
                  num_frames=3,
                  cpu_cache_length=100,
                  is_low_res_input=True,
-                 fusion_bool=False,
-                 dyn_bool=False,
-                 pla_bool=False,
                  spynet_path='experiments/pretrained_models/flownet/spynet_sintel_final-3d2a1287.pth')
-    model.load_state_dict(torch.load(model_path)['params'], strict=True)
+    model.load_state_dict(torch.load(model_path)['params'], strict=False)
     model.eval()
     model = model.to(device)
 

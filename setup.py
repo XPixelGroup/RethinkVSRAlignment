@@ -82,15 +82,15 @@ def get_requirements(filename='requirements.txt'):
 if __name__ == '__main__':
     write_version_py()
     setup(
-        name='SwinVSR',
+        name='rethinkvsralignment',
         version=get_version(),
-        description='FAIG aims at investigating the mechanism underlying the unified one-branch blind SR network',
+        description='Rethinking Alignment in Video Super-Resolution Transformers',
         long_description=readme(),
         long_description_content_type='text/markdown',
-        author='Liangbin Xie',
-        author_email='lb.xie@siat.ac.cn',
-        keywords='computer vision, pytorch, blind super-resolution, interpretation',
-        url='https://github.com/TencentARC/FAIG',
+        author='Shuwei Shi',
+        author_email='ssw20@mails.tsinghua.edu.cn',
+        keywords='computer vision, pytorch, video restoration, super-resolution',
+        url='https://github.com/XPixelGroup/RethinkVSRAlignment',
         include_package_data=True,
         packages=find_packages(exclude=('options', 'datasets', 'experiments', 'results', 'tb_logger', 'wandb')),
         classifiers=[
@@ -101,7 +101,7 @@ if __name__ == '__main__':
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],
-        license='Apache License Version 2.0',
+        license='BSD-3-Clause License',
         setup_requires=['cython', 'numpy'],
         install_requires=get_requirements(),
         zip_safe=False)

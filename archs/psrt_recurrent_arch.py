@@ -32,9 +32,6 @@ class BasicRecurrentSwin(nn.Module):
                  patch_size=1,
                  cpu_cache_length=100,
                  is_low_res_input=True,
-                 fusion_bool=False,
-                 dyn_bool=False,
-                 pla_bool=False,
                  spynet_path=None):
 
         super().__init__()
@@ -80,11 +77,8 @@ class BasicRecurrentSwin(nn.Module):
                     img_range=1.,
                     upsampler='pixelshuffle',
                     resi_connection='1conv',
-                    num_frames=num_frames,
-                    fusion_bool=fusion_bool,
-                    dyn_bool=dyn_bool,
-                    pla_bool=pla_bool)
-            
+                    num_frames=num_frames)
+
 
         self.upconv1 = nn.Conv2d(mid_channels, mid_channels * 4, 3, 1, 1, bias=True)
         self.upconv2 = nn.Conv2d(mid_channels, 64 * 4, 3, 1, 1, bias=True)
@@ -215,7 +209,7 @@ class BasicRecurrentSwin(nn.Module):
                     flow_n2 = flow_n1 + flow_warp(flow_n2, flow_n1.permute(0, 2, 3, 1))
                     cond_n2 = flow_warp_avg_patch(feat_n2, flow_n2)
 
-                
+
                 cond = torch.stack([cond_n1, feat_current, cond_n2], dim=1)
                 # patch alignment
                 feat_prop = self.patch_align[module_name](cond)
@@ -353,7 +347,7 @@ class BasicRecurrentSwin(nn.Module):
             flops += modules_flop
             print(pipl_name, modules_flop / 1e9)
             print("\n")
-        
+
         flops += h * w * self.embed_dim * self.mid_channels * 9
         flops += h * w * self.mid_channels * self.mid_channels* 4 * 9
         flops += 2*h * 2*w * self.mid_channels * self.mid_channels * 4 * 9
@@ -361,7 +355,7 @@ class BasicRecurrentSwin(nn.Module):
         flops += 4*h * 4*w * self.mid_channels * 3  * 9
 
         return flops
-        
+
 
 
 
@@ -428,9 +422,6 @@ if __name__ == '__main__':
         patch_size = 1,
         cpu_cache_length = 100,
         is_low_res_input = True,
-        fusion_bool = False,
-        dyn_bool = False,
-        pla_bool = False,
         spynet_path = 'experiments/pretrained_models/flownet/spynet_sintel_final-3d2a1287.pth'
     )
 

@@ -15,7 +15,7 @@ def parse_args():
     #parser.add_argument('config', help='test config file path')
     parser.add_argument('--folder_type',type=str,default="vimeo_test" , help='folder_name')
     parser.add_argument('--vimeo', type=str, help='index corresponds to the first frame of the sequence')
-    
+
     parser.add_argument('--device', type=int, default=0, help='CUDA device id')
     args = parser.parse_args()
     return args
@@ -54,12 +54,9 @@ def main():
                  num_frames=3,
                  cpu_cache_length=100,
                  is_low_res_input=True,
-                 fusion_bool=False,
-                 dyn_bool=False,
-                 pla_bool=False,
                  spynet_path='experiments/pretrained_models/flownet/spynet_sintel_final-3d2a1287.pth')
 
-    model.load_state_dict(torch.load(model_path)['params'], strict=True)
+    model.load_state_dict(torch.load(model_path)['params'], strict=False)
     model.eval()
     model = model.to(device)
 
