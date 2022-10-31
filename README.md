@@ -16,6 +16,8 @@ This repository is the official PyTorch implementation of "Rethinking Alignment 
 <p align="center">
   <img width="800" src="assets/patch_warp.png">
 </p>
+## Update
+[2022/10/31] refine codes and release visual results.
 
 ## PSRT-recurrent
 <p align="center">
