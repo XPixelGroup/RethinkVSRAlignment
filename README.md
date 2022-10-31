@@ -35,6 +35,7 @@ Download [pretrained models](https://drive.google.com/drive/folders/1SyCIPlCZp4S
 git clone https://github.com/XPixelGroup/RethinkVSRAlignment
 cd RethinkVSRAlignment
 pip install -r requirements.txt
+pip install basicsr
 python setup.py develop
 
 # video sr trained on REDS, tested on REDS4
@@ -52,6 +53,7 @@ Prepare the corresponding datasets follwing the quick test stage. For better I/O
 git clone https://github.com/XPixelGroup/RethinkVSRAlignment
 cd RethinkVSRAlignment
 pip install -r requirements.txt
+pip install basicsr
 python setup.py develop
 
 # video sr trained on REDS, tested on REDS4
