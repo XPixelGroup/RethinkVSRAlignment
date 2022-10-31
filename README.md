@@ -3,6 +3,8 @@
 [arxiv](https://arxiv.org/abs/2207.08494)
 **|**
 [pretrained models](https://drive.google.com/drive/folders/1SyCIPlCZp4SkORMaUVKzT0M07nDAhdrl?usp=sharing)
+**|**
+[visual results](https://drive.google.com/drive/folders/1SyCIPlCZp4SkORMaUVKzT0M07nDAhdrl?usp=sharing)
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2207.08494)
 [![GitHub Stars](https://img.shields.io/github/stars/XPixelGroup/RethinkVSRAlignment?style=social)](https://github.com/XPixelGroup/RethinkVSRAlignment)
