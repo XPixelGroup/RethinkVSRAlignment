@@ -1,4 +1,3 @@
-basicsr
 numpy
 opencv-python
 requests
