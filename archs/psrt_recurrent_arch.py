@@ -361,7 +361,7 @@ class BasicRecurrentSwin(nn.Module):
 
 
 def flow_warp_avg_patch(x, flow, interpolation='nearest', padding_mode='zeros', align_corners=True):
-    """Warp an image or a feature map with optical flow.
+    """Patch Alignment
 
     Args:
         x (Tensor): Tensor with size (n, c, h, w).
@@ -381,12 +381,13 @@ def flow_warp_avg_patch(x, flow, interpolation='nearest', padding_mode='zeros', 
     #     raise ValueError(f'The spatial sizes of input ({x.size()[-2:]}) and '
     #                      f'flow ({flow.size()[1:3]}) are not the same.')
     _, _, h, w = x.size()
-    # create mesh grid
+    # patch size is set to 8.
     pad_h = (8 - h % 8) % 8
     pad_w = (8 - w % 8) % 8
     flow = F.pad(flow, (0, pad_w, 0, pad_h), mode='reflect')
     hp = h + pad_h
     wp = w + pad_w
+    # create mesh grid
     grid_y, grid_x = torch.meshgrid(torch.arange(0, hp), torch.arange(0, wp))
     grid = torch.stack((grid_x, grid_y), 2).type_as(x)  # (h, w, 2)
     grid.requires_grad = False
